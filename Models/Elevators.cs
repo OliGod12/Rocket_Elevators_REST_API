@@ -4,18 +4,18 @@ using MySqlConnector;
 
 namespace Rocket_Elevators_REST_API.Models
 {
-    public class Columns
+    public class Elevators
     {
         public int Id { get; set; }
         public string Status { get; set; }
 
         internal AppDb Db { get; set; }
 
-        public Columns()
+        public Elevators()
         {
         }
 
-        internal Columns(AppDb db)
+        internal Elevators(AppDb db)
         {
             Db = db;
         }
@@ -23,7 +23,7 @@ namespace Rocket_Elevators_REST_API.Models
         //public async Task InsertAsync()
         //{
         //    using var cmd = Db.Connection.CreateCommand();
-        //    cmd.CommandText = @"INSERT INTO `Columns` (`status`) VALUES (@status);";
+        //    cmd.CommandText = @"INSERT INTO `Elevators` (`status`) VALUES (@status);";
         //    BindParams(cmd);
         //    await cmd.ExecuteNonQueryAsync();
         //    Id = (int)cmd.LastInsertedId;
@@ -32,7 +32,7 @@ namespace Rocket_Elevators_REST_API.Models
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE `columns` SET `status` = @status WHERE `Id` = @id;";
+            cmd.CommandText = @"UPDATE `elevators` SET `status` = @status WHERE `Id` = @id;";
             BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
