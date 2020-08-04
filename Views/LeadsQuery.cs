@@ -16,24 +16,24 @@ namespace Rocket_Elevators_REST_API.Views
             Db = db;
         }
 
-        public async Task<Leads> FindOneAsync(int id)
-        {
-            using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `status` FROM `leads` WHERE `Id` = @id";
-            cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@id",
-                DbType = DbType.Int32,
-                Value = id,
-            });
-            var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
-            return result.Count > 0 ? result[0] : null;
-        }
+        //public async Task<Leads> FindOneAsync(int id)
+        //{
+        //    using var cmd = Db.Connection.CreateCommand();
+        //    cmd.CommandText = @"SELECT `Id`, `status` FROM `leads` WHERE `Id` = @id";
+        //    cmd.Parameters.Add(new MySqlParameter
+        //    {
+        //        ParameterName = "@id",
+        //        DbType = DbType.Int32,
+        //        Value = id,
+        //    });
+        //    var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
+        //    return result.Count > 0 ? result[0] : null;
+        //}
 
         public async Task<List<Leads>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `status` FROM `leads` ORDER BY `Id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `Id`, `created_at` FROM `leads` WHERE DATEDIFF(NOW(), `created_at`) < 30  ORDER BY `Id` ;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -56,7 +56,7 @@ namespace Rocket_Elevators_REST_API.Views
                     var post = new Leads(Db)
                     {
                         Id = reader.GetInt32(0),
-                        Status = reader.GetString(1),
+                        Created_at = reader.GetDateTime(1),
                     };
                     posts.Add(post);
                 }
