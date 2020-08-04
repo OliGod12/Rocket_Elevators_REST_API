@@ -33,7 +33,15 @@ namespace Rocket_Elevators_REST_API.Views
         public async Task<List<Buildings>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `admin_full_name`, `admin_phone`, `admin_email`, `full_name_STA`, `phone_TA`, `email_TA`, `address_id`, `customer_id` FROM `buildings` JOIN `batteries` `columns` `elevators` WHERE `batteries.status` = `Intervention` || `columns.status` = `Intervention` || `elevators.status` = `Intervention` ORDER BY `Id` DESC LIMIT 9;";
+            cmd.CommandText = @"SELECT * FROM `buildings` 
+                JOIN `batteries`
+                ON buildings.id = batteries.building_id
+                JOIN `columns`
+                ON batteries.id = columns.battery_id
+                JOIN `elevators`
+                ON columns.id = elevators.column_id
+                WHERE batteries.status = 'intervention' OR columns.status = 'intervention' OR elevators.status = 'intervention'
+                GROUP BY buildings.id;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -56,7 +64,16 @@ namespace Rocket_Elevators_REST_API.Views
                     var post = new Buildings(Db)
                     {
                         Id = reader.GetInt32(0),
-                        Status = reader.GetString(1),
+                        Admin_Full_Name = reader.GetString(1),
+                        Admin_Phone = reader.GetString(2),
+                        Admin_Email = reader.GetString(3),
+                        Full_Name_STA = reader.GetString(4),
+                        Phone_TA = reader.GetString(5),
+                        Email_TA = reader.GetString(6),
+                        Address_Id = reader.GetInt32(7),
+                        Customer_Id = reader.GetInt32(8),
+                        Created_at = reader.GetDateTime(9),
+                        Updated_at = reader.GetDateTime(10),
                     };
                     posts.Add(post);
                 }

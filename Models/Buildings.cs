@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Threading.Tasks;
 using MySqlConnector;
@@ -7,7 +8,18 @@ namespace Rocket_Elevators_REST_API.Models
     public class Buildings
     {
         public int Id { get; set; }
-        public string Status { get; set; }
+        public string Admin_Full_Name { get; set; }
+        public string Admin_Phone { get; set; }
+        public string Admin_Email { get; set; }
+        public string Full_Name_STA { get; set; }
+        public string Phone_TA { get; set; }
+        public string Email_TA { get; set; }
+        public int Address_Id { get; set; }
+        public int Customer_Id { get; set; }
+        public DateTime Created_at { get; set; }
+        public DateTime Updated_at { get; set; }
+
+
 
         internal AppDb Db { get; set; }
 
@@ -33,7 +45,7 @@ namespace Rocket_Elevators_REST_API.Models
         {
             using var cmd = Db.Connection.CreateCommand();
             cmd.CommandText = @"UPDATE `buildings` SET `status` = @status WHERE `Id` = @id;";
-            BindParams(cmd);
+            //BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
         }
@@ -56,14 +68,14 @@ namespace Rocket_Elevators_REST_API.Models
             });
         }
 
-        private void BindParams(MySqlCommand cmd)
-        {
-            cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@status",
-                DbType = DbType.String,
-                Value = Status,
-            });
-        }
+        //private void BindParams(MySqlCommand cmd)
+        //{
+        //    cmd.Parameters.Add(new MySqlParameter
+        //    {
+        //        ParameterName = "@status",
+        //        DbType = DbType.String,
+        //        Value = Status,
+        //    });
+        //}
     }
 }

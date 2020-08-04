@@ -17,8 +17,8 @@ namespace Rocket_Elevators_REST_API.Models
         public string Department { get; set; }
         public string Message { get; set; }
         public string File_name { get; set; }
-        public DateTime Updated_at { get; set; }
         public DateTime Created_at { get; set; }
+        public DateTime Updated_at { get; set; }
 
         internal AppDb Db { get; set; }
 
