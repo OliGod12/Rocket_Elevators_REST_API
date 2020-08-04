@@ -33,15 +33,14 @@ namespace Rocket_Elevators_REST_API.Views
         public async Task<List<Buildings>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT * FROM `buildings` 
+            cmd.CommandText = @"SELECT DISTINCT buildings.Id, buildings.admin_full_name, buildings.admin_phone, buildings.admin_email, buildings.full_name_STA, buildings.phone_TA, buildings.email_TA, buildings.address_id, buildings.customer_id, buildings.created_at, buildings.updated_at FROM `buildings` 
                 JOIN `batteries`
                 ON buildings.id = batteries.building_id
                 JOIN `columns`
                 ON batteries.id = columns.battery_id
                 JOIN `elevators`
                 ON columns.id = elevators.column_id
-                WHERE batteries.status = 'intervention' OR columns.status = 'intervention' OR elevators.status = 'intervention'
-                GROUP BY buildings.id;";
+                WHERE batteries.status = 'intervention' OR columns.status = 'intervention' OR elevators.status = 'intervention';";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
