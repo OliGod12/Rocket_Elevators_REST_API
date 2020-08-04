@@ -19,7 +19,7 @@ namespace Rocket_Elevators_REST_API.Views
         public async Task<Elevators> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `*`, `status` FROM `elevators` WHERE `Id` = @id";
+            cmd.CommandText = @"SELECT `Id`, `status` FROM `elevators` WHERE `Id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -39,7 +39,7 @@ namespace Rocket_Elevators_REST_API.Views
         public async Task<List<Elevators>> InactiveElevatorsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT COUNT(`Id`) FROM `elevators` WHERE (`status` != `Active`) OR (`status` != `active`);";
+            cmd.CommandText = @"SELECT `Id`, `status` FROM `elevators` WHERE `status` != 'active' ;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
