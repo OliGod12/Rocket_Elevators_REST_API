@@ -14,12 +14,12 @@ namespace Rocket_Elevators_REST_API.Controllers
             Db = db;
         }
 
-        // GET api/elevators
+        // GET api/inactiveelevators
         [HttpGet]
         public async Task<IActionResult> GetLatest()
         {
             await Db.Connection.OpenAsync();
-            var query = new ElevatorsQuery(Db);
+            var query = new ListElevatorsQuery(Db);
             var result = await query.InactiveElevatorsAsync();
             return new OkObjectResult(result);
         }

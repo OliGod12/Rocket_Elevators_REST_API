@@ -8,6 +8,16 @@ namespace Rocket_Elevators_REST_API.Models
     public class Leads
     {
         public int Id { get; set; }
+        public string Full_Name { get; set; }
+        public string Compagny_Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Project_Name { get; set; }
+        public string Project_Description { get; set; }
+        public string Department { get; set; }
+        public string Message { get; set; }
+        public string File_name { get; set; }
+        public DateTime Updated_at { get; set; }
         public DateTime Created_at { get; set; }
 
         internal AppDb Db { get; set; }

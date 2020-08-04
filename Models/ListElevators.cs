@@ -1,20 +1,33 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Numerics;
 using System.Threading.Tasks;
 using MySqlConnector;
 
 namespace Rocket_Elevators_REST_API.Models
 {
-    public class Elevators
+    public class ListElevators
     {
         public int Id { get; set; }
+        public Int64 Serial_Number { get; set; }
+        public string Model { get; set; }
+        public string Elevator_Type { get; set; }
         public string Status { get; set; }
+        public DateTime Commission_Date { get; set; }
+        public DateTime Date_Of_Last_Inspection { get; set; }
+        public string Certificat_Of_Inspection { get; set; }
+        public string Informations { get; set; }
+        public string Notes { get; set; }
+        public int Column_Id { get; set; }
+        public DateTime Created_at { get; set; }
+        public DateTime Updated_at { get; set; }
         internal AppDb Db { get; set; }
 
-        public Elevators()
+        public ListElevators()
         {
         }
 
-        internal Elevators(AppDb db)
+        internal ListElevators(AppDb db)
         {
             Db = db;
         }
