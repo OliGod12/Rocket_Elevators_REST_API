@@ -16,10 +16,10 @@ namespace Rocket_Elevators_REST_API.Views
             Db = db;
         }
 
-        public async Task<Buildings> FindOneAsync(int id)
+        /*public async Task<Buildings> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `status` FROM `buildings` WHERE `Id` = @id";
+            cmd.CommandText = @"SELECT `Id`,  FROM `buildings` WHERE  `Id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -28,12 +28,12 @@ namespace Rocket_Elevators_REST_API.Views
             });
             var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
             return result.Count > 0 ? result[0] : null;
-        }
+        } */
 
         public async Task<List<Buildings>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `status` FROM `buildings` ORDER BY `Id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT `Id`, `admin_full_name`, `admin_phone`, `admin_email`, `full_name_STA`, `phone_TA`, `email_TA`, `address_id`, `customer_id` FROM `buildings` JOIN `batteries` `columns` `elevators` WHERE `batteries.status` = `Intervention` || `columns.status` = `Intervention` || `elevators.status` = `Intervention` ORDER BY `Id` DESC LIMIT 9;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
