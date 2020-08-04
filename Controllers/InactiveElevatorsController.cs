@@ -14,31 +14,31 @@ namespace Rocket_Elevators_REST_API.Controllers
             Db = db;
         }
 
-        // GET api/batteries
+        // GET api/elevators
         [HttpGet]
         public async Task<IActionResult> GetLatest()
         {
             await Db.Connection.OpenAsync();
-            var query = new BatteriesQuery(Db);
-            var result = await query.LatestPostsAsync();
+            var query = new ElevatorsQuery(Db);
+            var result = await query.InactiveElevatorsAsync();
             return new OkObjectResult(result);
         }
 
-        // GET api/batteries/5
+        // GET api/elevators/5
         //[HttpGet("{id}")]
         //public async Task<IActionResult> GetOne(int id)
         //{
         //    await Db.Connection.OpenAsync();
-        //    var query = new BatteriesQuery(Db);
+        //    var query = new ElevatorsQuery(Db);
         //    var result = await query.FindOneAsync(id);
         //    if (result is null)
         //        return new NotFoundResult();
         //    return new OkObjectResult(result);
         //}
 
-        //// POST api/batteries
+        //// POST api/elevators
         //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Batteries body)
+        //public async Task<IActionResult> Post([FromBody] Elevators body)
         //{
         //    await Db.Connection.OpenAsync();
         //    body.Db = Db;
@@ -46,12 +46,12 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkObjectResult(body);
         //}
 
-        // PUT api/batteries/5
+        // PUT api/elevators/5
         //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutOne(int id, [FromBody] Batteries body)
+        //public async Task<IActionResult> PutOne(int id, [FromBody] Elevators body)
         //{
         //    await Db.Connection.OpenAsync();
-        //    var query = new BatteriesQuery(Db);
+        //    var query = new ElevatorsQuery(Db);
         //    var result = await query.FindOneAsync(id);
         //    if (result is null)
         //        return new NotFoundResult();
@@ -60,12 +60,12 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkObjectResult(result);
         //}
 
-        //// DELETE api/batteries/5
+        //// DELETE api/elevators/5
         //[HttpDelete("{id}")]
         //public async Task<IActionResult> DeleteOne(int id)
         //{
         //    await Db.Connection.OpenAsync();
-        //    var query = new BatteriesQuery(Db);
+        //    var query = new ElevatorsQuery(Db);
         //    var result = await query.FindOneAsync(id);
         //    if (result is null)
         //        return new NotFoundResult();
@@ -73,12 +73,12 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkResult();
         //}
 
-        //// DELETE api/batteries
+        //// DELETE api/elevators
         //[HttpDelete]
         //public async Task<IActionResult> DeleteAll()
         //{
         //    await Db.Connection.OpenAsync();
-        //    var query = new BatteriesQuery(Db);
+        //    var query = new ElevatorsQuery(Db);
         //    await query.DeleteAllAsync();
         //    return new OkResult();
         //}

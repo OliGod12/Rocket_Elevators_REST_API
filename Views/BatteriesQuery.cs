@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
@@ -28,6 +29,11 @@ namespace Rocket_Elevators_REST_API.Views
             });
             var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
             return result.Count > 0 ? result[0] : null;
+        }
+
+        internal Task InactiveElevatorsAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<Batteries>> LatestPostsAsync()
