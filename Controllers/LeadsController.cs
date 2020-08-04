@@ -24,17 +24,17 @@ namespace Rocket_Elevators_REST_API.Controllers
             return new OkObjectResult(result);
         }
 
-        // GET api/leads/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetOne(int id)
-        {
-            await Db.Connection.OpenAsync();
-            var query = new LeadsQuery(Db);
-            var result = await query.FindOneAsync(id);
-            if (result is null)
-                return new NotFoundResult();
-            return new OkObjectResult(result);
-        }
+        //// GET api/leads/5
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetOne(int id)
+        //{
+        //    await Db.Connection.OpenAsync();
+        //    var query = new LeadsQuery(Db);
+        //    var result = await query.FindOneAsync(id);
+        //    if (result is null)
+        //        return new NotFoundResult();
+        //    return new OkObjectResult(result);
+        //}
 
         //// POST api/leads
         //[HttpPost]
@@ -46,19 +46,19 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkObjectResult(body);
         //}
 
-        // PUT api/leads/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutOne(int id, [FromBody] Leads body)
-        {
-            await Db.Connection.OpenAsync();
-            var query = new LeadsQuery(Db);
-            var result = await query.FindOneAsync(id);
-            if (result is null)
-                return new NotFoundResult();
-            result.Status = body.Status;
-            await result.UpdateAsync();
-            return new OkObjectResult(result);
-        }
+        //// PUT api/leads/5
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutOne(int id, [FromBody] Leads body)
+        //{
+        //    await Db.Connection.OpenAsync();
+        //    var query = new LeadsQuery(Db);
+        //    var result = await query.FindOneAsync(id);
+        //    if (result is null)
+        //        return new NotFoundResult();
+        //    result.Status = body.Status;
+        //    await result.UpdateAsync();
+        //    return new OkObjectResult(result);
+        //}
 
         //// DELETE api/leads/5
         //[HttpDelete("{id}")]

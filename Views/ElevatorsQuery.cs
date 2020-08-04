@@ -36,12 +36,6 @@ namespace Rocket_Elevators_REST_API.Views
             cmd.CommandText = @"SELECT `Id`, `status` FROM `elevators` ORDER BY `Id` DESC LIMIT 10;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
-        public async Task<List<Elevators>> InactiveElevatorsAsync()
-        {
-            using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `status` FROM `elevators` WHERE `status` != 'active' ;";
-            return await ReadAllAsync(await cmd.ExecuteReaderAsync());
-        }
 
         //public async Task DeleteAllAsync()
         //{

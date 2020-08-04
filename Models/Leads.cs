@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Threading.Tasks;
 using MySqlConnector;
@@ -7,7 +8,17 @@ namespace Rocket_Elevators_REST_API.Models
     public class Leads
     {
         public int Id { get; set; }
-        public string Status { get; set; }
+        public string Full_Name { get; set; }
+        public string Compagny_Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Project_Name { get; set; }
+        public string Project_Description { get; set; }
+        public string Department { get; set; }
+        public string Message { get; set; }
+        public string File_name { get; set; }
+        public DateTime Updated_at { get; set; }
+        public DateTime Created_at { get; set; }
 
         internal AppDb Db { get; set; }
 
@@ -29,14 +40,13 @@ namespace Rocket_Elevators_REST_API.Models
         //    Id = (int)cmd.LastInsertedId;
         //}
 
-        public async Task UpdateAsync()
-        {
-            using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE `leads` SET `status` = @status WHERE `Id` = @id;";
-            BindParams(cmd);
-            BindId(cmd);
-            await cmd.ExecuteNonQueryAsync();
-        }
+        //public async Task UpdateAsync()
+        //{
+        //    using var cmd = Db.Connection.CreateCommand();
+        //    cmd.CommandText = @"UPDATE `leads` SET `status` = @status WHERE `Id` = @id;";
+        //    BindId(cmd);
+        //    await cmd.ExecuteNonQueryAsync();
+        //}
 
         //public async Task DeleteAsync()
         //{
@@ -46,24 +56,14 @@ namespace Rocket_Elevators_REST_API.Models
         //    await cmd.ExecuteNonQueryAsync();
         //}
 
-        private void BindId(MySqlCommand cmd)
-        {
-            cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@id",
-                DbType = DbType.Int32,
-                Value = Id,
-            });
-        }
-
-        private void BindParams(MySqlCommand cmd)
-        {
-            cmd.Parameters.Add(new MySqlParameter
-            {
-                ParameterName = "@status",
-                DbType = DbType.String,
-                Value = Status,
-            });
-        }
+        //private void BindId(MySqlCommand cmd)
+        //{
+        //    cmd.Parameters.Add(new MySqlParameter
+        //    {
+        //        ParameterName = "@id",
+        //        DbType = DbType.Int32,
+        //        Value = Id,
+        //    });
+        //}
     }
 }
