@@ -33,7 +33,7 @@ namespace Rocket_Elevators_REST_API.Views
         public async Task<List<Leads>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `Full_Name`, `Compagny_Name`, `Email`, `Phone`, `Project_Name`, `Project_Description`, `Department`, `Message`, `File_name`, `updated_at`, `created_at` FROM `leads` WHERE DATEDIFF(NOW(), `created_at`) <= 30  ORDER BY `created_at` ;";
+            cmd.CommandText = @"SELECT `Id`, `Full_Name`, `Compagny_Name`, `Email`, `Phone`, `Project_Name`, `Project_Description`, `Department`, `Message`, `File_name`, `created_at`, `updated_at`  FROM `leads` WHERE DATEDIFF(NOW(), `created_at`) <= 30  ORDER BY `created_at` ;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -66,8 +66,8 @@ namespace Rocket_Elevators_REST_API.Views
                         Department = reader.GetString(7),
                         Message = reader.GetString(8),
                         File_name = reader.GetString(9),
-                        Updated_at = reader.GetDateTime(10),
-                        Created_at = reader.GetDateTime(11),
+                        Created_at = reader.GetDateTime(10),
+                        Updated_at = reader.GetDateTime(11),
 
                     };
                     posts.Add(post);

@@ -25,7 +25,7 @@ namespace Rocket_Elevators_REST_API.Controllers
         }
 
         // GET api/buildings/5
-        [HttpGet("{id}")]
+       /* [HttpGet("{id}")]
         public async Task<IActionResult> GetOne(int id)
         {
             await Db.Connection.OpenAsync();
@@ -36,17 +36,7 @@ namespace Rocket_Elevators_REST_API.Controllers
             return new OkObjectResult(result);
         }
 
-        //// POST api/buildings
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Buildings body)
-        //{
-        //    await Db.Connection.OpenAsync();
-        //    body.Db = Db;
-        //    await body.InsertAsync();
-        //    return new OkObjectResult(body);
-        //}
-
-        // PUT api/buildings/5
+       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOne(int id, [FromBody] Buildings body)
         {
@@ -58,30 +48,7 @@ namespace Rocket_Elevators_REST_API.Controllers
             result.Status = body.Status;
             await result.UpdateAsync();
             return new OkObjectResult(result);
-        }
-
-        //// DELETE api/buildings/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteOne(int id)
-        //{
-        //    await Db.Connection.OpenAsync();
-        //    var query = new BuildingsQuery(Db);
-        //    var result = await query.FindOneAsync(id);
-        //    if (result is null)
-        //        return new NotFoundResult();
-        //    await result.DeleteAsync();
-        //    return new OkResult();
-        //}
-
-        //// DELETE api/buildings
-        //[HttpDelete]
-        //public async Task<IActionResult> DeleteAll()
-        //{
-        //    await Db.Connection.OpenAsync();
-        //    var query = new BuildingsQuery(Db);
-        //    await query.DeleteAllAsync();
-        //    return new OkResult();
-        //}
+        }*/
 
         public AppDb Db { get; }
     }

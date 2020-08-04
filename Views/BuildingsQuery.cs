@@ -16,10 +16,10 @@ namespace Rocket_Elevators_REST_API.Views
             Db = db;
         }
 
-        public async Task<Buildings> FindOneAsync(int id)
+        /*public async Task<Buildings> FindOneAsync(int id)
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `status` FROM `buildings` WHERE `Id` = @id";
+            cmd.CommandText = @"SELECT `Id`,  FROM `buildings` WHERE  `Id` = @id";
             cmd.Parameters.Add(new MySqlParameter
             {
                 ParameterName = "@id",
@@ -28,12 +28,19 @@ namespace Rocket_Elevators_REST_API.Views
             });
             var result = await ReadAllAsync(await cmd.ExecuteReaderAsync());
             return result.Count > 0 ? result[0] : null;
-        }
+        } */
 
         public async Task<List<Buildings>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `status` FROM `buildings` ORDER BY `Id` DESC LIMIT 10;";
+            cmd.CommandText = @"SELECT DISTINCT buildings.Id, buildings.admin_full_name, buildings.admin_phone, buildings.admin_email, buildings.full_name_STA, buildings.phone_TA, buildings.email_TA, buildings.address_id, buildings.customer_id, buildings.created_at, buildings.updated_at FROM `buildings` 
+                JOIN `batteries`
+                ON buildings.id = batteries.building_id
+                JOIN `columns`
+                ON batteries.id = columns.battery_id
+                JOIN `elevators`
+                ON columns.id = elevators.column_id
+                WHERE batteries.status = 'intervention' OR columns.status = 'intervention' OR elevators.status = 'intervention';";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -56,7 +63,16 @@ namespace Rocket_Elevators_REST_API.Views
                     var post = new Buildings(Db)
                     {
                         Id = reader.GetInt32(0),
-                        Status = reader.GetString(1),
+                        Admin_Full_Name = reader.GetString(1),
+                        Admin_Phone = reader.GetString(2),
+                        Admin_Email = reader.GetString(3),
+                        Full_Name_STA = reader.GetString(4),
+                        Phone_TA = reader.GetString(5),
+                        Email_TA = reader.GetString(6),
+                        Address_Id = reader.GetInt32(7),
+                        Customer_Id = reader.GetInt32(8),
+                        Created_at = reader.GetDateTime(9),
+                        Updated_at = reader.GetDateTime(10),
                     };
                     posts.Add(post);
                 }
