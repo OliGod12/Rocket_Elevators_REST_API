@@ -1,6 +1,6 @@
 
 
-## Base address for calling the api
+# Base address for calling the api
 Please use the following address for the api call. You can use it in your browser to get infromations or you can use it in postman to modify information. All of the example will be show bellow.
 
 http://imastuden.azurewebsites.net/api/
@@ -8,7 +8,7 @@ http://imastuden.azurewebsites.net/api/
 
 
 
-## Changing a status of an element
+# Changing a status of an element
 To change the status of an element i suggest that you use Postman.
 In Postman, change the request method to PUT, then in the body of the request make sure that raw is checked and the type of text is JSON. Inside the address, after the /{elements}/, insert the id of the element that you want to change   /{elements}/{the_id_of_the_element_that_you_want_to_change}. Put in the body of the request the thing that you want to change inside double quotes, in our case its the status, followed by a colon and inside another double quotes the status that you want it to be.
 All of those informations should be inside curly brakets. Here is a small example:
