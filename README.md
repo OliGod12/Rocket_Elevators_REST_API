@@ -27,14 +27,14 @@ Body:
 
 
 
-# ----------ELEVATOR---------- #
-## Check the status of an elevator
+## ----------ELEVATOR---------- ##
+# Check the status of an elevator
 To check the status of an elevator you have to enter /elevators/{the_id_of_the_elevator}. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example: 
 
 http://imastuden.azurewebsites.net/api/elevators/1
 *This will return the elevator with the id 1 and his status
 
-## Changing the status of an elevator
+# Changing the status of an elevator
 To change the status of an elevator, use the template for changing the status of an element. The body of the resquest will be the same except the status that you want to change it to. Here is an example of the address:
 
 http://imastuden.azurewebsites.net/api/elevators/1
@@ -42,7 +42,7 @@ http://imastuden.azurewebsites.net/api/elevators/1
 *replace the {the_id_of_the_element} with : 1
 *This will change the status of the elevator with the id of 1 to Intervention.
 
-## Get the list of elevator that are not in operation
+# Get the list of elevator that are not in operation
 To get the list of elevator that are not in operation you have to enter /inactiveelevators. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
 
 http://imastuden.azurewebsites.net/api/inactiveelevators
@@ -53,14 +53,14 @@ http://imastuden.azurewebsites.net/api/inactiveelevators
 
 
 
-# ----------COLUMN---------- #
-## Check the status of a column
+## ----------COLUMN---------- ##
+# Check the status of a column
 To check the status of a column you have to enter /columns/{the_id_of_the_column}. You can do this directly in your browser or in Postman while changing the request type to GET.  Here is an example:
 
 http://imastuden.azurewebsites.net/api/columns/1
 *This will return the column with the id 1 and his status
 
-## Changing the status of an column
+# Changing the status of an column
 To change the status of an column, use the template for changing the status of an element. The body of the resquest will be the same except the status that you want to change it to. Here is an example of the address:
 
 http://imastuden.azurewebsites.net/api/columns/1
@@ -73,14 +73,14 @@ http://imastuden.azurewebsites.net/api/columns/1
 
 
 
-# ----------BATTERY---------- #
-## Check the status of a battery
+## ----------BATTERY---------- ##
+# Check the status of a battery
 To check the status of a battery you have to enter /batteries/{the_id_of_the_battery}. You can do this directly in your browser or in Postman while changing the request type to GET.  Here is an example:
 
 http://imastuden.azurewebsites.net/api/batteries/1
 *This will return the battery with the id 1 and his status
 
-## Changing the status of an battery
+# Changing the status of an battery
 To change the status of an battery, use the template for changing the status of an element. The body of the resquest will be the same except the status that you want to change it to. Here is an example of the address:
 
 http://imastuden.azurewebsites.net/api/batteries/1
@@ -93,8 +93,8 @@ http://imastuden.azurewebsites.net/api/batteries/1
 
 
 
-# ----------BUILDINGS---------- #
-## Get the list of building that have a battery/column/elevator that require intervention
+## ----------BUILDINGS---------- ##
+# Get the list of building that have a battery/column/elevator that require intervention
 To get the list of buildings that have at least one battery or column or elevator that his status is intervention you have to enter /buildings. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
 
 http://imastuden.azurewebsites.net/api/buildings
@@ -105,7 +105,7 @@ http://imastuden.azurewebsites.net/api/buildings
 
 
 
-# ----------LEADS---------- #
-## Retrieving a list of Leads created in the last 30 days who have not yet become customers.
+## ----------LEADS---------- ##
+# Retrieving a list of Leads created in the last 30 days who have not yet become customers.
 To get this information you have to enter /leads. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
 http://imastuden.azurewebsites.net/api/leads
