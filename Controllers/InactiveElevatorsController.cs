@@ -24,7 +24,7 @@ namespace Rocket_Elevators_REST_API.Controllers
             return new OkObjectResult(result);
         }
 
-        // GET api/elevators/5
+        // GET api/inactiveelevators/5
         //[HttpGet("{id}")]
         //public async Task<IActionResult> GetOne(int id)
         //{
@@ -36,7 +36,7 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkObjectResult(result);
         //}
 
-        //// POST api/elevators
+        //// POST api/inactiveelevators
         //[HttpPost]
         //public async Task<IActionResult> Post([FromBody] Elevators body)
         //{
@@ -46,7 +46,7 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkObjectResult(body);
         //}
 
-        // PUT api/elevators/5
+        // PUT api/inactiveelevators/5
         //[HttpPut("{id}")]
         //public async Task<IActionResult> PutOne(int id, [FromBody] Elevators body)
         //{
@@ -60,7 +60,7 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkObjectResult(result);
         //}
 
-        //// DELETE api/elevators/5
+        //// DELETE api/inactiveelevators/5
         //[HttpDelete("{id}")]
         //public async Task<IActionResult> DeleteOne(int id)
         //{
@@ -73,7 +73,7 @@ namespace Rocket_Elevators_REST_API.Controllers
         //    return new OkResult();
         //}
 
-        //// DELETE api/elevators
+        //// DELETE api/inactiveelevators
         //[HttpDelete]
         //public async Task<IActionResult> DeleteAll()
         //{

@@ -6,7 +6,7 @@ namespace Rocket_Elevators_REST_API.Models
 {
     public class Elevators
     {
-        public int Id { get; set; }
+        public int ElevatorId { get; set; }
         public string Status { get; set; }
         internal AppDb Db { get; set; }
 
@@ -51,7 +51,7 @@ namespace Rocket_Elevators_REST_API.Models
             {
                 ParameterName = "@id",
                 DbType = DbType.Int32,
-                Value = Id,
+                Value = ElevatorId,
             });
         }
 

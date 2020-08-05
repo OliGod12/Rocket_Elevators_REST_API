@@ -56,7 +56,7 @@ namespace Rocket_Elevators_REST_API.Views
                     
                     var post = new Leads(Db)
                     {
-                        Id = reader.GetInt32(0),
+                        LeadId = reader.GetInt32(0),
                         Full_Name = reader.GetString(1),
                         Compagny_Name = reader.GetString(2),
                         Email = reader.GetString(3),

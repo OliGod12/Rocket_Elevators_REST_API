@@ -7,7 +7,7 @@ namespace Rocket_Elevators_REST_API.Models
 {
     public class Buildings
     {
-        public int Id { get; set; }
+        public int BuildingId { get; set; }
         public string Admin_Full_Name { get; set; }
         public string Admin_Phone { get; set; }
         public string Admin_Email { get; set; }
@@ -64,7 +64,7 @@ namespace Rocket_Elevators_REST_API.Models
             {
                 ParameterName = "@id",
                 DbType = DbType.Int32,
-                Value = Id,
+                Value = BuildingId,
             });
         }
 

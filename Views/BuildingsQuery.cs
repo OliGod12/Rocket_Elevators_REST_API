@@ -62,7 +62,7 @@ namespace Rocket_Elevators_REST_API.Views
                 {
                     var post = new Buildings(Db)
                     {
-                        Id = reader.GetInt32(0),
+                        BuildingId = reader.GetInt32(0),
                         Admin_Full_Name = reader.GetString(1),
                         Admin_Phone = reader.GetString(2),
                         Admin_Email = reader.GetString(3),

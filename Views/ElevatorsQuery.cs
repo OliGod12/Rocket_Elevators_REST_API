@@ -55,7 +55,7 @@ namespace Rocket_Elevators_REST_API.Views
                 {
                     var post = new Elevators(Db)
                     {
-                        Id = reader.GetInt32(0),
+                        ElevatorId = reader.GetInt32(0),
                         Status = reader.GetString(1),
                     };
                     posts.Add(post);
