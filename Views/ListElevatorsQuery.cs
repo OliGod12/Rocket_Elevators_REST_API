@@ -61,7 +61,7 @@ namespace Rocket_Elevators_REST_API.Views
                 {
                     var post = new ListElevators(Db)
                     {
-                        Id = reader.GetInt32(0),
+                        ElevatorId = reader.GetInt32(0),
                         Serial_Number = reader.GetInt64(1),
                         Model = reader.GetString(2),
                         Elevator_Type = reader.GetString(3),

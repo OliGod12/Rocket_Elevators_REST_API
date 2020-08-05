@@ -7,7 +7,7 @@ namespace Rocket_Elevators_REST_API.Models
 {
     public class Leads
     {
-        public int Id { get; set; }
+        public int LeadId { get; set; }
         public string Full_Name { get; set; }
         public string Compagny_Name { get; set; }
         public string Email { get; set; }
@@ -62,7 +62,7 @@ namespace Rocket_Elevators_REST_API.Models
         //    {
         //        ParameterName = "@id",
         //        DbType = DbType.Int32,
-        //        Value = Id,
+        //        Value = LeadId,
         //    });
         //}
     }

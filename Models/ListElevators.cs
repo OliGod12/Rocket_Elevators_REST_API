@@ -8,7 +8,7 @@ namespace Rocket_Elevators_REST_API.Models
 {
     public class ListElevators
     {
-        public int Id { get; set; }
+        public int ElevatorId { get; set; }
         public Int64 Serial_Number { get; set; }
         public string Model { get; set; }
         public string Elevator_Type { get; set; }
@@ -64,7 +64,7 @@ namespace Rocket_Elevators_REST_API.Models
             {
                 ParameterName = "@id",
                 DbType = DbType.Int32,
-                Value = Id,
+                Value = ElevatorId,
             });
         }
 
