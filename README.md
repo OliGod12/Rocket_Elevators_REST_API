@@ -28,7 +28,7 @@ Body:
 
 
 
-# -------------------------------------------ELEVATOR------------------------------------------- #
+# ----------ELEVATOR---------- #
 ## Check the status of an elevator
 To check the status of an elevator you have to enter /elevators/{the_id_of_the_elevator}. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example: 
 # ----------------------------------------------- #
@@ -57,7 +57,7 @@ http://imastuden.azurewebsites.net/api/inactiveelevators
 
 
 
-# -------------------------------------------COLUMN------------------------------------------- #
+# ----------COLUMN---------- #
 ## Check the status of a column
 To check the status of a column you have to enter /columns/{the_id_of_the_column}. You can do this directly in your browser or in Postman while changing the request type to GET.  Here is an example:
 # ----------------------------------------------- #
@@ -79,7 +79,7 @@ replace the {the_id_of_the_element} with : 1
 
 
 
-# -------------------------------------------BATTERY------------------------------------------- #
+# ----------BATTERY---------- #
 ## Check the status of a battery
 To check the status of a battery you have to enter /batteries/{the_id_of_the_battery}. You can do this directly in your browser or in Postman while changing the request type to GET.  Here is an example:
 # ----------------------------------------------- #
@@ -101,7 +101,7 @@ replace the {the_id_of_the_element} with : 1
 
 
 
-# -------------------------------------------BUILDINGS------------------------------------------- #
+# ----------BUILDINGS---------- #
 ## Get the list of building that have a battery/column/elevator that require intervention
 To get the list of buildings that have at least one battery or column or elevator that his status is intervention you have to enter /buildings. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
 # ----------------------------------------------- #
@@ -114,7 +114,7 @@ http://imastuden.azurewebsites.net/api/buildings
 
 
 
-# -------------------------------------------LEADS------------------------------------------- #
+# ----------LEADS---------- #
 ## Retrieving a list of Leads created in the last 30 days who have not yet become customers.
 To get this information you have to enter /leads. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
 # ----------------------------------------------- #
