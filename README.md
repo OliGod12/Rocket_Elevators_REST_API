@@ -1,4 +1,5 @@
-
+## Week 8 
+In order to connect our information system to the equipment in operation throughout the territory served, we needed to develop a REST API using C # and .NET Core
 
 ## Base address for calling the api
 Please use the following address for the api call. You can use it in your browser to get informations or you can use it in postman to modify information. All of the example will be show bellow.
