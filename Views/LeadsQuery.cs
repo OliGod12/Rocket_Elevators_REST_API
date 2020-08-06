@@ -33,7 +33,7 @@ namespace Rocket_Elevators_REST_API.Views
         public async Task<List<Leads>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT `Id`, `Full_Name`, `Compagny_Name`, `Email`, `Phone`, `Project_Name`, `Project_Description`, `Department`, `Message`, `File_name`, `created_at`, `updated_at`  FROM `leads` WHERE DATEDIFF(NOW(), `created_at`) <= 30  ORDER BY `created_at` ;";
+            cmd.CommandText = @"SELECT DISTINCT leads.Id, leads.Full_Name, leads.Compagny_Name, leads.Email, leads.Phone, leads.Project_Name, leads.Project_Description, leads.Department, leads.Message, leads.File_name, leads.created_at, leads.updated_at  FROM leads JOIN customers ON customers.company_contact_email != leads.Email WHERE DATEDIFF(NOW(), leads.created_at) <= 30  ORDER BY leads.created_at ;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 

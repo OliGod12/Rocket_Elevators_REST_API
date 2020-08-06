@@ -53,6 +53,11 @@ namespace Rocket_Elevators_REST_API.Controllers
             await Db.Connection.OpenAsync();
             var query = new ColumnsQuery(Db);
             var result = await query.FindOneAsync(id);
+            //check the request sent if it valid
+            if (body is null)
+                return new NotFoundObjectResult("Please enter something in the status");
+            if (body.Status.ToLower() != "intervention" && body.Status.ToLower() != "active" && body.Status.ToLower() != "inactive")
+                return new NotFoundObjectResult("The status you entered is invalide!");
             if (result is null)
                 return new NotFoundResult();
             result.Status = body.Status;
