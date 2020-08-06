@@ -7,11 +7,11 @@ namespace Rocket_Elevators_REST_API.Models
     public class Quotes
     {
         public int QuoteId { get; set; }
-        public string? Full_Name { get; set; }
-        public string? Compagny_Name { get; set; }
-        public string Building_Type { get; set; }
-        public string Product_Quality { get; set; }
-        public int? Nb_Appartement { get; set; }
+        public string Full_Name { get; set; }
+        public string Company_Name { get; set; }
+        public string? Building_Type { get; set; }
+        public string? Product_Quality { get; set; }
+        public int Nb_Appartement { get; set; }
         public int? Nb_Business { get; set; }
         public int? Nb_Company { get; set; }
         public int? Nb_Floor { get; set; }
@@ -62,15 +62,15 @@ namespace Rocket_Elevators_REST_API.Models
         //    await cmd.ExecuteNonQueryAsync();
         //}
 
-        // private void BindId(MySqlCommand cmd)
-        // {
-        //     cmd.Parameters.Add(new MySqlParameter
-        //     {
-        //         ParameterName = "@id",
-        //         DbType = DbType.Int32,
-        //         Value = QuoteId,
-        //     });
-        // }
+        private void BindId(MySqlCommand cmd)
+        {
+            cmd.Parameters.Add(new MySqlParameter
+            {
+                ParameterName = "@id",
+                DbType = DbType.Int32,
+                Value = QuoteId,
+            });
+        }
 
         // private void BindParams(MySqlCommand cmd)
         // {
