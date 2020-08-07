@@ -60,27 +60,44 @@ namespace Rocket_Elevators_REST_API.Views
             {
                 while (await reader.ReadAsync())
                 {
-                    
+                    if(reader.IsDBNull(0)) nc_quote_id = 0; else nc_quote_id = reader.GetInt32(0);
+                    if(reader.IsDBNull(1)) nc_full_name = ""; else nc_full_name = reader.GetString(1);
+                    if(reader.IsDBNull(2)) nc_company_name = ""; else nc_company_name = reader.GetString(2);
+                    if(reader.IsDBNull(3)) nc_building_type = ""; else nc_building_type = reader.GetString(3);
+                    if(reader.IsDBNull(4)) nc_product_quality = ""; else nc_product_quality = reader.GetString(4);
+                    if(reader.IsDBNull(5)) nc_nb_apt = 0; else nc_nb_apt = reader.GetInt32(5);
+                    if(reader.IsDBNull(6)) nc_nb_biz = 0; else nc_nb_biz = reader.GetInt32(6);
+                    if(reader.IsDBNull(7)) nc_nb_comp = 0; else nc_nb_comp = reader.GetInt32(7);
+                    if(reader.IsDBNull(8)) nc_nb_floor = 0; else nc_nb_floor = reader.GetInt32(8);
+                    if(reader.IsDBNull(9)) nc_nb_base = 0; else nc_nb_base = reader.GetInt32(9);
+                    if(reader.IsDBNull(10)) nc_nb_cage = 0; else nc_nb_cage = reader.GetInt32(10);
+                    if(reader.IsDBNull(11)) nc_nb_park = 0; else nc_nb_park = reader.GetInt32(11);
+                    if(reader.IsDBNull(12)) nc_nb_occ = 0; else nc_nb_occ = reader.GetInt32(12);
+                    if(reader.IsDBNull(13)) nc_nb_hours = ""; else nc_nb_hours = reader.GetString(13);
+                    if(reader.IsDBNull(14)) nc_nb_ele = ""; else nc_nb_ele= reader.GetString(14);
+                    if(reader.IsDBNull(15)) nc_subtotal = ""; else nc_subtotal= reader.GetString(15);
+                    if(reader.IsDBNull(16)) nc_install = ""; else nc_install= reader.GetString(16);
+                    if(reader.IsDBNull(17)) nc_final = ""; else nc_final = reader.GetString(17);
                     var post = new Quotes(Db)
                     {
-                        QuoteId = reader.GetInt32(0),
-                        Full_Name = reader.GetString(1),
-                        Company_Name = reader.GetString(2),
-                        Building_Type = reader.GetString(3),
-                        Product_Quality = reader.GetString(4),
-                        Nb_Appartement = reader.GetInt32(5),
-                        // Nb_Business = reader.GetInt32(6),
-                        // Nb_Company = reader.GetInt32(7),
-                        // Nb_Floor = reader.GetInt32(8),
-                        // Nb_Basement = reader.GetInt32(9),
-                        // Nb_Cage = reader.GetInt32(10),
-                        // Nb_Parking = reader.GetInt32(11),
-                        // Nb_OccupantPerFloor = reader.GetInt32(12),
-                        // Nb_OperatingHour = reader.GetString(13),
-                        // Nb_Ele_Suggested = reader.GetString(14),
-                        // Subtotal = reader.GetString(15),
-                        // Install_Fee = reader.GetString(16),
-                        // Final_Price = reader.GetString(17)
+                        QuoteId = nc_quote_id,
+                        Full_Name = nc_full_name,
+                        Company_Name = nc_company_name,
+                        Building_Type = nc_building_type,
+                        Product_Quality = nc_product_quality,
+                        Nb_Appartement = nc_nb_apt,
+                        Nb_Business = nc_nb_biz,
+                        Nb_Company = nc_nb_comp,
+                        Nb_Floor = nc_nb_floor,
+                        Nb_Basement = nc_nb_base,
+                        Nb_Cage = nc_nb_cage,
+                        Nb_Parking = nc_nb_park,
+                        Nb_OccupantPerFloor = nc_nb_occ,
+                        Nb_OperatingHour = nc_nb_hours,
+                        Nb_Ele_Suggested = nc_nb_ele,
+                        Subtotal = nc_subtotal,
+                        Install_Fee = nc_install,
+                        Final_Price = nc_final
                     };
                     posts.Add(post);
                 }
