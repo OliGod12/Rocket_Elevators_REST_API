@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.IO;
 using System.Threading.Tasks;
 using MySqlConnector;
 using Rocket_Elevators_REST_API.Models;
@@ -53,21 +55,37 @@ namespace Rocket_Elevators_REST_API.Views
             {
                 while (await reader.ReadAsync())
                 {
-                    
+                    int iLeadId;
+                    string sFull_Name,sCompagny_Name,sEmail,sPhone,sProject_Name,sProject_Description,sDepartment,sMessage,sFile_Name;
+                    DateTime dCreated_at,dUpdated_at;
+                    //check for null value and set a placeholder to avoid errors
+                    if (reader.IsDBNull(0)) iLeadId = 0; else iLeadId = reader.GetInt32(0);
+                    if (reader.IsDBNull(1)) sFull_Name = ""; else sFull_Name = reader.GetString(1);
+                    if (reader.IsDBNull(2)) sCompagny_Name = ""; else sCompagny_Name = reader.GetString(2);
+                    if (reader.IsDBNull(3)) sEmail = ""; else sEmail = reader.GetString(3);
+                    if (reader.IsDBNull(4)) sPhone = ""; else sPhone = reader.GetString(4);
+                    if (reader.IsDBNull(5)) sProject_Name = ""; else sProject_Name = reader.GetString(5);
+                    if (reader.IsDBNull(6)) sProject_Description = ""; else sProject_Description = reader.GetString(6);
+                    if (reader.IsDBNull(7)) sDepartment = ""; else sDepartment = reader.GetString(7);
+                    if (reader.IsDBNull(8)) sMessage = ""; else sMessage = reader.GetString(8);
+                    if (reader.IsDBNull(9)) sFile_Name = ""; else sFile_Name = reader.GetString(9);
+                    if (reader.IsDBNull(10)) dCreated_at = new DateTime(0000, 0, 0); else dCreated_at = reader.GetDateTime(10);
+                    if (reader.IsDBNull(11)) dUpdated_at = new DateTime(0000, 0, 0); else dUpdated_at = reader.GetDateTime(11);
+
                     var post = new Leads(Db)
                     {
-                        LeadId = reader.GetInt32(0),
-                        Full_Name = reader.GetString(1),
-                        Compagny_Name = reader.GetString(2),
-                        Email = reader.GetString(3),
-                        Phone = reader.GetString(4),
-                        Project_Name = reader.GetString(5),
-                        Project_Description = reader.GetString(6),
-                        Department = reader.GetString(7),
-                        Message = reader.GetString(8),
-                        File_name = reader.GetString(9),
-                        Created_at = reader.GetDateTime(10),
-                        Updated_at = reader.GetDateTime(11),
+                        LeadId = iLeadId,
+                        Full_Name = sFull_Name,
+                        Compagny_Name = sCompagny_Name,
+                        Email = sEmail,
+                        Phone = sPhone,
+                        Project_Name = sProject_Name,
+                        Project_Description = sProject_Description,
+                        Department = sDepartment,
+                        Message = sMessage,
+                        File_name = sFile_Name,
+                        Created_at = dCreated_at,
+                        Updated_at = dUpdated_at,
 
                     };
                     posts.Add(post);
