@@ -32,7 +32,7 @@ namespace Rocket_Elevators_REST_API.Models
         public async Task UpdateAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"UPDATE `columns` SET `status` = @status WHERE `Id` = @id;";
+            cmd.CommandText = @"UPDATE `columns` SET `status` = @status, `updated_at` = NOW() WHERE `Id` = @id;";
             BindParams(cmd);
             BindId(cmd);
             await cmd.ExecuteNonQueryAsync();
