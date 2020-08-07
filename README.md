@@ -1,97 +1,37 @@
-## Week 8 
-In order to connect our information system to the equipment in operation throughout the territory served, we needed to develop a REST API using C # and .NET Core
+# ROCKET ELEVATORS REST API
 
-## Base address for calling the api
-Please use the following address for the api call. You can use it in your browser to get informations or you can use it in postman to modify information. All of the example will be show bellow.
+## Week 8
+We implemented a REST API in C# that is capable of manipulating various entity's within the operational database and deployed in via Microsoft Azure. 
 
-http://imastuden.azurewebsites.net/api/
+## Our Team
+  - Olivier Godbout - Team Leader
+  - Samuel Chabot  - Collaborator 
+  - Colin Larke - Collaborator 
+  - James Allan Jean-Jacques - Collaborator
 
-
-
-
-## Changing a status of an element
-To change the status of an element i suggest that you use Postman.
-In Postman, change the request method to PUT, then in the body of the request make sure that raw is checked and the type of text is JSON. Inside the address, after the /{elements}/, insert the id of the element that you want to change   /{elements}/{the_id_of_the_element_that_you_want_to_change}. Put in the body of the request the thing that you want to change inside double quotes, in our case its the status, followed by a colon and inside another double quotes the status that you want it to be.
-All of those informations should be inside curly brakets. Here is a small example:
-
-
-Methode: PUT   Address: http://imastuden.azurewebsites.net/api/{elements}/{the_id_of_the_element} 
-Body:
-{
-    "status": "Intervention"
-}
-
-*This will change the status of the element with the id that you inserted to Intervention.
+ ## INSTRUCTIONS TO FOLLOW
+ 
+ ## 1 - Click link to open Postman and access the collections needed for the queries
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3f98d5e6a531e3025b47)
 
 
+## 2 - On the left panel click Collections and Open the Folder W8-OlivierGodbout
+The sub-folder RestAPI contains the queries you'll want to run, open it up and select one. For GET/PUT queries that target a single entity you can change the target id in the URL next to GET/PUT(Whichever one your query is doing)</br>
+To change the status on PUT requests click on the body tab in the upper panel and change the status to either "Active" or "Inactive"
+ `https://imastuden.azurewebsites.net/api/elevators/<CHANGE ME>`
+ ![View of Postman](https://i.imgur.com/Um1JCw5.png)
+ 
+## 3 - When your parameter is set click the blue send button to run the query. You can view the results by clicking the lower Body tab in the response panel.
+![View of Postman](https://i.imgur.com/25Dn8l5.png)
 
-
-## Check the status of an elevator
-To check the status of an elevator you have to enter /elevators/{the_id_of_the_elevator}. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example: 
-
-http://imastuden.azurewebsites.net/api/elevators/1
-*This will return the elevator with the id 1 and his status
-
-## Changing the status of an elevator
-To change the status of an elevator, use the template for changing the status of an element. The body of the resquest will be the same except the status that you want to change it to. Here is an example of the address:
-
-http://imastuden.azurewebsites.net/api/elevators/1
-*replace the {elements} with : elevators
-*replace the {the_id_of_the_element} with : 1
-*This will change the status of the elevator with the id of 1 to Intervention.
-
-## Get the list of elevator that are not in operation
-To get the list of elevator that are not in operation you have to enter /inactiveelevators. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
-
-http://imastuden.azurewebsites.net/api/inactiveelevators
-*This will return the list of elevator that their status is not active
+## You can also take view some of the request directly via the Azure deployment in the links below
+**Check the status of an elevator -** http://imastuden.azurewebsites.net/api/elevators/1 \
+**Get the list of elevator that are not in operation -** http://imastuden.azurewebsites.net/api/inactiveelevators \
+**Check the status of a column -** http://imastuden.azurewebsites.net/api/columns/1 \
+**Check the status of a battery -** http://imastuden.azurewebsites.net/api/batteries/1 \
+**Get list of buildings that have a battery/column/elevator intervention -** http://imastuden.azurewebsites.net/api/buildings \
+**Retrieve a list of Leads from the last 30 days are not yet customers -** http://imastuden.azurewebsites.net/api/leads \
+**Retrieve a list of quotes with for commercial buildings with excellium products -** http://imastuden.azurewebsites.net/api/quotes
 
 
 
-
-## Check the status of a column
-To check the status of a column you have to enter /columns/{the_id_of_the_column}. You can do this directly in your browser or in Postman while changing the request type to GET.  Here is an example:
-
-http://imastuden.azurewebsites.net/api/columns/1
-*This will return the column with the id 1 and his status
-
-## Changing the status of an column
-To change the status of an column, use the template for changing the status of an element. The body of the resquest will be the same except the status that you want to change it to. Here is an example of the address:
-
-http://imastuden.azurewebsites.net/api/columns/1
-*replace the {elements} with : columns
-*replace the {the_id_of_the_element} with : 1
-*This will change the status of the column with the id of 1 to Intervention.
-
-
-
-
-## Check the status of a battery
-To check the status of a battery you have to enter /batteries/{the_id_of_the_battery}. You can do this directly in your browser or in Postman while changing the request type to GET.  Here is an example:
-
-http://imastuden.azurewebsites.net/api/batteries/1
-*This will return the battery with the id 1 and his status
-
-## Changing the status of an battery
-To change the status of an battery, use the template for changing the status of an element. The body of the resquest will be the same except the status that you want to change it to. Here is an example of the address:
-
-http://imastuden.azurewebsites.net/api/batteries/1
-*replace the {elements} with : batteries
-*replace the {the_id_of_the_element} with : 1
-*This will change the status of the battery with the id of 1 to Intervention.
-
-
-
-
-## Get the list of building that have a battery/column/elevator that require intervention
-To get the list of buildings that have at least one battery or column or elevator that his status is intervention you have to enter /buildings. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
-
-http://imastuden.azurewebsites.net/api/buildings
-*This will return the list of buildings that have at least one battery or column or elevator that his status is intervention
-
-
-
-
-## Retrieving a list of Leads created in the last 30 days who have not yet become customers.
-To get this information you have to enter /leads. You can do this directly in your browser or in Postman while changing the request type to GET. Here is an example:
-http://imastuden.azurewebsites.net/api/leads
