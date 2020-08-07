@@ -17,7 +17,7 @@ We implemented a REST API in C# that is capable of manipulating various entity's
 
 ## 2 - On the left panel click Collections and Open the Folder W8-OlivierGodbout
 The sub-folder RestAPI contains the queries you'll want to run, open it up and select one. For GET/PUT queries that target a single entity you can change the target id in the URL next to GET/PUT(Whichever one your query is doing)</br>
-`https://imastuden.azurewebsites.net/api/elevators/<CHANGE ME>`
+`https://imastuden.azurewebsites.net/api/elevators/<CHANGE ME>`</br>
 To change the status on PUT requests click on the body tab in the upper panel and change the status to either "Active", "Inactive" or "Intervention"
  
  ![View of Postman](https://i.imgur.com/Um1JCw5.png)
