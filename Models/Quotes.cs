@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Threading.Tasks;
 using MySqlConnector;
@@ -8,6 +9,7 @@ namespace Rocket_Elevators_REST_API.Models
     {
         public int QuoteId { get; set; }
         public string Full_Name { get; set; }
+        public string Phone_Number { get; set; }
         public string Company_Name { get; set; }
         public string Building_Type { get; set; }
         public string Product_Quality { get; set; }
@@ -24,6 +26,10 @@ namespace Rocket_Elevators_REST_API.Models
         public string Subtotal { get; set; }
         public string Install_Fee { get; set; }
         public string Final_Price { get; set; }
+        
+        public DateTime Created_At { get; set; }
+        public DateTime Updated_At { get; set; }
+
 
         internal AppDb Db { get; set; }
 

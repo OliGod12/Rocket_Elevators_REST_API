@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -40,7 +41,7 @@ namespace Rocket_Elevators_REST_API.Views
         public async Task<List<Quotes>> LatestPostsAsync()
         {
             using var cmd = Db.Connection.CreateCommand();
-            cmd.CommandText = @"SELECT quotes.Id, quotes.Full_Name, quotes.Company_Name, quotes.Building_Type, quotes.Product_Quality, quotes.Nb_Appartement  FROM `quotes` ORDER BY `Id` LIMIT 10;";
+            cmd.CommandText = @"SELECT quotes.Id, quotes.Full_Name, quotes.Phone_Number, quotes.Company_Name, quotes.Building_Type, quotes.Product_Quality FROM `quotes` ORDER BY `Id` LIMIT 50;";
             return await ReadAllAsync(await cmd.ExecuteReaderAsync());
         }
 
@@ -60,44 +61,56 @@ namespace Rocket_Elevators_REST_API.Views
             {
                 while (await reader.ReadAsync())
                 {
+                    int nc_quote_id, nc_nb_apt, nc_nb_biz, nc_nb_comp, nc_nb_floor, nc_nb_base, nc_nb_cage, nc_nb_park, nc_nb_occ;
+                    string nc_full_name, nc_company_name, nc_building_type, nc_product_quality, nc_nb_hours, nc_nb_ele, nc_subtotal, nc_install, nc_final, nc_phone;
+                    DateTime nc_created_at, nc_updated_at;
+
                     if(reader.IsDBNull(0)) nc_quote_id = 0; else nc_quote_id = reader.GetInt32(0);
                     if(reader.IsDBNull(1)) nc_full_name = ""; else nc_full_name = reader.GetString(1);
-                    if(reader.IsDBNull(2)) nc_company_name = ""; else nc_company_name = reader.GetString(2);
-                    if(reader.IsDBNull(3)) nc_building_type = ""; else nc_building_type = reader.GetString(3);
-                    if(reader.IsDBNull(4)) nc_product_quality = ""; else nc_product_quality = reader.GetString(4);
-                    if(reader.IsDBNull(5)) nc_nb_apt = 0; else nc_nb_apt = reader.GetInt32(5);
-                    if(reader.IsDBNull(6)) nc_nb_biz = 0; else nc_nb_biz = reader.GetInt32(6);
-                    if(reader.IsDBNull(7)) nc_nb_comp = 0; else nc_nb_comp = reader.GetInt32(7);
-                    if(reader.IsDBNull(8)) nc_nb_floor = 0; else nc_nb_floor = reader.GetInt32(8);
-                    if(reader.IsDBNull(9)) nc_nb_base = 0; else nc_nb_base = reader.GetInt32(9);
-                    if(reader.IsDBNull(10)) nc_nb_cage = 0; else nc_nb_cage = reader.GetInt32(10);
-                    if(reader.IsDBNull(11)) nc_nb_park = 0; else nc_nb_park = reader.GetInt32(11);
-                    if(reader.IsDBNull(12)) nc_nb_occ = 0; else nc_nb_occ = reader.GetInt32(12);
-                    if(reader.IsDBNull(13)) nc_nb_hours = ""; else nc_nb_hours = reader.GetString(13);
-                    if(reader.IsDBNull(14)) nc_nb_ele = ""; else nc_nb_ele= reader.GetString(14);
-                    if(reader.IsDBNull(15)) nc_subtotal = ""; else nc_subtotal= reader.GetString(15);
-                    if(reader.IsDBNull(16)) nc_install = ""; else nc_install= reader.GetString(16);
-                    if(reader.IsDBNull(17)) nc_final = ""; else nc_final = reader.GetString(17);
+                    if(reader.IsDBNull(2)) nc_phone = ""; else nc_phone = reader.GetString(2);
+                    if(reader.IsDBNull(3)) nc_company_name = ""; else nc_company_name = reader.GetString(3);
+                    if(reader.IsDBNull(4)) nc_building_type = ""; else nc_building_type = reader.GetString(4);
+                    if(reader.IsDBNull(5)) nc_product_quality = ""; else nc_product_quality = reader.GetString(5);
+                    // if(reader.IsDBNull(6)) nc_nb_apt = 0; else nc_nb_apt = reader.GetInt32(6);
+                    // if(reader.IsDBNull(7)) nc_nb_biz = 0; else nc_nb_biz = reader.GetInt32(7);
+                    // if(reader.IsDBNull(8)) nc_nb_comp = 0; else nc_nb_comp = reader.GetInt32(8);
+                    // if(reader.IsDBNull(9)) nc_nb_floor = 0; else nc_nb_floor = reader.GetInt32(9);
+                    // if(reader.IsDBNull(10)) nc_nb_base = 0; else nc_nb_base = reader.GetInt32(10);
+                    // if(reader.IsDBNull(11)) nc_nb_cage = 0; else nc_nb_cage = reader.GetInt32(11);
+                    // if(reader.IsDBNull(12)) nc_nb_park = 0; else nc_nb_park = reader.GetInt32(12);
+                    // if(reader.IsDBNull(13)) nc_nb_occ = 0; else nc_nb_occ = reader.GetInt32(13);
+                    // if(reader.IsDBNull(14)) nc_nb_hours = ""; else nc_nb_hours = reader.GetString(14);
+                    // if(reader.IsDBNull(15)) nc_nb_ele = ""; else nc_nb_ele= reader.GetString(15);
+                    // if(reader.IsDBNull(16)) nc_subtotal = ""; else nc_subtotal= reader.GetString(16);
+                    // if(reader.IsDBNull(17)) nc_install = ""; else nc_install= reader.GetString(17);
+                    // if(reader.IsDBNull(18)) nc_final = ""; else nc_final = reader.GetString(18);
+                    // if (reader.IsDBNull(19)) nc_created_at = new DateTime(0000, 0, 0); else nc_created_at = reader.GetDateTime(19);
+                    // if (reader.IsDBNull(20)) nc_updated_at = new DateTime(0000, 0, 0); else nc_updated_at = reader.GetDateTime(20);
+
+
                     var post = new Quotes(Db)
                     {
                         QuoteId = nc_quote_id,
                         Full_Name = nc_full_name,
+                        Phone_Number = nc_phone,
                         Company_Name = nc_company_name,
                         Building_Type = nc_building_type,
                         Product_Quality = nc_product_quality,
-                        Nb_Appartement = nc_nb_apt,
-                        Nb_Business = nc_nb_biz,
-                        Nb_Company = nc_nb_comp,
-                        Nb_Floor = nc_nb_floor,
-                        Nb_Basement = nc_nb_base,
-                        Nb_Cage = nc_nb_cage,
-                        Nb_Parking = nc_nb_park,
-                        Nb_OccupantPerFloor = nc_nb_occ,
-                        Nb_OperatingHour = nc_nb_hours,
-                        Nb_Ele_Suggested = nc_nb_ele,
-                        Subtotal = nc_subtotal,
-                        Install_Fee = nc_install,
-                        Final_Price = nc_final
+                        // Nb_Appartement = nc_nb_apt,
+                        // Nb_Business = nc_nb_biz,
+                        // Nb_Company = nc_nb_comp,
+                        // Nb_Floor = nc_nb_floor,
+                        // Nb_Basement = nc_nb_base,
+                        // Nb_Cage = nc_nb_cage,
+                        // Nb_Parking = nc_nb_park,
+                        // Nb_OccupantPerFloor = nc_nb_occ,
+                        // Nb_OperatingHour = nc_nb_hours,
+                        // Nb_Ele_Suggested = nc_nb_ele,
+                        // Subtotal = nc_subtotal,
+                        // Install_Fee = nc_install,
+                        // Final_Price = nc_final,
+                        // Created_At = nc_created_at,
+                        // Updated_At = nc_updated_at
                     };
                     posts.Add(post);
                 }
